@@ -1,40 +1,71 @@
-<<<<<<< HEAD
-## Usage
+Nama: [Nama Kamu]  
+Sekolah: SMK Telkom Purwokerto
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+# 📚 BacaKu – Aplikasi Perpustakaan Digital
+Website yang dirancang untuk membantu pengguna sekolah dalam meminjam, mengelola, dan mengecek status buku secara online dengan tampilan modern dan fitur lengkap.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## 🎯 Target Pengguna
+Aplikasi ini ditujukan untuk:
+- Siswa SMK
+- Guru & Staf Perpustakaan
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+### Kebutuhan utama pengguna:
+- Melihat katalog dan detail buku
+- Melakukan peminjaman dan melihat riwayat
+- Mengelola data buku dan anggota (untuk admin)
+- Melihat jadwal pengembalian dan update aktivitas
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+---
 
-## Available Scripts
+## 🔗 Live Website
+[Masukkan link deploy jika tersedia, contoh: https://bacaku.vercel.app]
 
-In the project directory, you can run:
+## 🎨 Figma Design
+[Masukkan link Figma jika ada]
 
-### `npm run dev` or `npm start`
+---
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🧾 Kredensial Login Default (jika ada)
+email: admin@email.com  
+password: 123456
 
-The page will reload if you make edits.<br>
+---
 
-### `npm run build`
+## 🌟 Fitur Utama
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+| Route / File | Halaman | Deskripsi |
+|--------------|---------|-----------|
+| `HomePage.tsx` | Beranda | Menampilkan info pengembalian, update aktivitas, dan buku baru |
+| `LoginPage.tsx`, `RegisterPage.tsx`, `ForgotPasswordPage.tsx` | Autentikasi | Login, register, dan reset password |
+| `ProfilePage.tsx`, `SettingPage.tsx` | Profil & Setting | Ubah info pengguna dan pengaturan akun |
+| `KatalogPage.tsx`, `Katalog Detail Page.tsx` | Katalog Buku | Menampilkan daftar dan detail buku |
+| `RiwayatPage.tsx`, `RiwayatDetailPage.tsx` | Riwayat Peminjaman | Riwayat peminjaman & pengembalian buku |
+| `Jadwal Pengembalian BukuPage.tsx` | Pengembalian | Menampilkan jadwal pengembalian buku |
+| `Manajemen BukuPage.tsx`, `Manajemen BukuDetailPage.tsx` | Kelola Buku (Admin) | Tambah/edit/hapus data buku |
+| `ManajemenAnggotaPage.tsx`, `ManajemenAnggota EditPage.tsx`, `ManajemenAnggota DetailPage.tsx` | Kelola Anggota (Admin) | Kelola data akun anggota |
+| `HelpPage.tsx` | Bantuan | Menyediakan panduan penggunaan aplikasi |
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+---
 
-## Deployment
+## 🛠️ Teknologi yang Digunakan
+- **Frontend**: SolidJS + TypeScript
+- **Styling**: Tailwind CSS
+- **Editor**: Visual Studio Code
+- **Desain**: Figma
+- **Chart**: AmCharts 5 (jika digunakan)
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+---
 
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
-=======
-# BacaKu
->>>>>>> 763e09df48e28e94b4d6e06db0eb1a6e26f8f365
+## 📅 Website-Build Progress
+1. Selasa, 24 Juni 2025 – Mengerjakan latihan proyek dari pembimbing  
+2. Rabu, 25 Juni 2025 – Mendesain UI di Figma  
+3. Kamis, 26 Juni 2025 – Finalisasi desain dan setup awal project  
+4. Senin, 30 Juni 2025 – Belajar SolidJS dan mulai frontend  
+5. 1–4 Juli 2025 – Mengerjakan tampilan awal dan struktur halaman  
+6. 7–11 Juli 2025 – Tambah fitur dan responsif  
+7. Sabtu, 12 Juli 2025 – Tambah & perbaikan fitur lanjutan  
+8. Minggu, 13 Juli 2025 – Finalisasi seluruh fitur dan halaman
+
+---
+
+© 2025 BacaKu – Digital Library App
