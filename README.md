@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Usage
 
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
@@ -34,3 +35,6 @@ Your app is ready to be deployed!
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
 
 ## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+=======
+# BacaKu
+>>>>>>> 763e09df48e28e94b4d6e06db0eb1a6e26f8f365
