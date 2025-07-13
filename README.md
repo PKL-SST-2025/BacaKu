@@ -18,10 +18,10 @@ Aplikasi ini ditujukan untuk:
 ---
 
 ## 🔗 Live Website
-[Masukkan link deploy jika tersedia, contoh: https://bacaku.vercel.app]
+
 
 ## 🎨 Figma Design
-[Masukkan link Figma jika ada]
+
 
 ---
 
