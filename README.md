@@ -1,4 +1,4 @@
-Nama: [Nama Kamu]  
+Nama: Dimas Faza Julian Putra
 Sekolah: SMK Telkom Purwokerto
 
 # 📚 BacaKu – Aplikasi Perpustakaan Digital
@@ -18,7 +18,7 @@ Aplikasi ini ditujukan untuk:
 ---
 
 ## 🔗 Live Website
-
+Belum
 
 ## 🎨 Figma Design
 https://www.figma.com/design/lpyYMYdtsjEb4WIYLbM0os/Untitled?node-id=0-1&p=f&t=y0uXGDbHxxgVUmuA-0
@@ -46,7 +46,6 @@ https://www.figma.com/design/lpyYMYdtsjEb4WIYLbM0os/Untitled?node-id=0-1&p=f&t=y
 - **Styling**: Tailwind CSS
 - **Editor**: Visual Studio Code
 - **Desain**: Figma
-- **Chart**: AmCharts 5 (jika digunakan)
 
 ---
 
