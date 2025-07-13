@@ -238,12 +238,12 @@ const HomePage: Component = () => {
               <div class="font-semibold text-[#388e5c] mb-7">2 Peminjaman aktif</div>
               <div class="flex items-center mb-5">
                 <img src="https://i.pravatar.cc/28" class="rounded-full mr-4" />
-                <span>User - Membawa "Esok Hari"</span>
+                <span>Admin - Membawa "Esok Hari"</span>
                 <span class="ml-auto text-gray-500 text-xs">Tenggat</span>
               </div>
               <div class="flex items-center mb-6">
                 <img src="https://i.pravatar.cc/28" class="rounded-full mr-4" />
-                <span>User - Mengembalikan buku</span>
+                <span>Admin - Mengembalikan buku</span>
                 <span class="ml-auto text-gray-500 text-xs">Besok</span>
               </div>
             </div>
