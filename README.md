@@ -18,7 +18,7 @@ Aplikasi ini ditujukan untuk:
 ---
 
 ## 🔗 Live Website
-Belum
+https://baca-ku.vercel.app
 
 ## 🎨 Figma Design
 https://www.figma.com/design/lpyYMYdtsjEb4WIYLbM0os/Untitled?node-id=0-1&p=f&t=y0uXGDbHxxgVUmuA-0
