@@ -9,8 +9,6 @@ import { HiOutlineQuestionMarkCircle } from 'solid-icons/hi';
 import { RiBusinessCustomerServiceFill } from 'solid-icons/ri';
 import { RiDocumentFileHistoryLine } from 'solid-icons/ri'; // Riwayat (History) icon
 
-// Simulasi role, nanti bisa diganti dari context/localStorage
-const [role] = createSignal<'admin' | 'user'>('user'); // ubah ke 'admin' untuk tes tampilan admin
 
 const HomePage: Component = () => {
   const navigate = useNavigate();

@@ -6,8 +6,6 @@ import { BsBookmarks, BsPeople } from 'solid-icons/bs';
 import { IoSettingsOutline, IoSettingsSharp } from 'solid-icons/io';
 import { RiDocumentFileHistoryLine, RiDocumentFileHistoryFill } from 'solid-icons/ri';
 
-const [role] = createSignal<'admin' | 'user'>('user');
-
 const RiwayatPage: Component = () => {
   const [showNotifModal, setShowNotifModal] = createSignal(false);
   const location = useLocation();

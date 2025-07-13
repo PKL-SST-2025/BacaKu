@@ -1,7 +1,7 @@
 import { AiOutlineHome, AiOutlineBook } from 'solid-icons/ai';
 import { RiDocumentFileHistoryLine } from 'solid-icons/ri';
 import { IoSettingsOutline } from 'solid-icons/io';
-import { BsBookmarks, BsBookmarksFill, BsPeople } from 'solid-icons/bs';
+import { BsBookmarksFill, BsPeople } from 'solid-icons/bs';
 import { FiMenu } from 'solid-icons/fi';
 import { A } from "@solidjs/router";
 import { createSignal } from "solid-js";
