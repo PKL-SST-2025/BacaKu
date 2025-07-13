@@ -25,12 +25,6 @@ https://www.figma.com/design/lpyYMYdtsjEb4WIYLbM0os/Untitled?node-id=0-1&p=f&t=y
 
 ---
 
-## 🧾 Kredensial Login Default (jika ada)
-email: admin@email.com  
-password: 123456
-
----
-
 ## 🌟 Fitur Utama
 
 | Route / File | Halaman | Deskripsi |
