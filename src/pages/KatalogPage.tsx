@@ -2,7 +2,7 @@ import { Component, createSignal } from 'solid-js';
 import { A, useLocation } from '@solidjs/router';
 import { FiMenu } from 'solid-icons/fi';
 import { AiOutlineHome, AiFillHome, AiOutlineBook, AiFillBook } from 'solid-icons/ai';
-import { BsBookmarks, BsPeople } from 'solid-icons/bs';
+import { BsBookmarks, BsPeople, BsBook } from 'solid-icons/bs';
 import { IoSettingsOutline, IoSettingsSharp } from 'solid-icons/io';
 import { RiDocumentFileHistoryLine, RiDocumentFileHistoryFill } from 'solid-icons/ri';
 
@@ -58,7 +58,7 @@ const KatalogPage: Component = () => {
       <div class="hidden md:flex fixed top-0 left-0 bg-[#6db37e] min-h-screen h-full w-20 flex-col items-center py-8 z-20">
         <div class="flex flex-col items-center gap-y-10 mt-14">
           <A href="/home" class="mb-4"><AiOutlineHome size={28} class="text-white" /></A>
-          <A href="/katalog" class="mb-4"><AiOutlineBook size={28} class="text-white" /></A>
+          <A href="/katalog" class="mb-4"><AiFillBook size={28} class="text-white" /></A>
           <A href="/riwayat" class="mb-4"><RiDocumentFileHistoryLine size={28} class="text-white" /></A>
           <A href="/settings" class="mb-4"><IoSettingsOutline size={28} class="text-white" /></A>
           <A href="/kelola-buku" class="mb-4"><BsBookmarks size={28} class="text-white" /></A>

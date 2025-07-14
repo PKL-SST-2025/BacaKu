@@ -6,10 +6,94 @@ import { BsBookmarks, BsPeople } from 'solid-icons/bs';
 import { IoSettingsOutline, IoSettingsSharp } from 'solid-icons/io';
 import { RiDocumentFileHistoryLine, RiDocumentFileHistoryFill } from 'solid-icons/ri';
 
+const bookCovers = [
+  'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
+  'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/old-books-cover-design-template-528851dfc1b6ed275212cd110a105122_screen.jpg?ts=1698687093',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSajGX7bOk3u1XHDMn3kZ6UE1tqtzNFGrFtrordlzGZ5YTT1WQEvlV0XiL11kUpRdzB8hU&usqp=CAU',
+  'https://lh3.googleusercontent.com/HGtwKYxay4SUYyrY1xV1KoMM47lVgqoULcoqIs7Mq-djSfWxCTNCT5cj--h7clrauEgeEieopwfajzzoc7Z9NylfTTRWTFZzioDWGKyPxAZMvdls1qzR-iA5415ajg=e365-rj-l80-w364',
+  'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/old-book-cover-design-template-a279ac8786047179622597ba498de354_screen.jpg?ts=1701320480'
+];
+const avatarUrls = [
+  'https://randomuser.me/api/portraits/men/32.jpg',
+  'https://randomuser.me/api/portraits/women/44.jpg',
+  'https://randomuser.me/api/portraits/men/45.jpg',
+  'https://randomuser.me/api/portraits/women/65.jpg',
+  'https://randomuser.me/api/portraits/men/78.jpg',
+  'https://randomuser.me/api/portraits/women/12.jpg',
+];
+function getRandomCover() {
+  return bookCovers[Math.floor(Math.random() * bookCovers.length)];
+}
+function getRandomAvatar() {
+  return avatarUrls[Math.floor(Math.random() * avatarUrls.length)];
+}
 const dummyBooks = [
-  { id: 1, title: 'Judul Buku 1', due: '13 Juli 2025', status: 'Hari Ini', genre: 'Novel' },
-  { id: 2, title: 'Judul Buku 2', due: '14 Juli 2025', status: 'Besok', genre: 'Komik' },
-  { id: 3, title: 'Judul Buku 3', due: '15 Juli 2025', status: 'Dalam 3 Hari', genre: 'Ensiklopedia' },
+  {
+    id: 1,
+    title: 'Matematika Kelas 7',
+    borrower: 'Andi Pratama',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-06',
+    due: '2025-07-13',
+    status: 'Hari Ini',
+    genre: 'Pelajaran',
+    img: getRandomCover(),
+  },
+  {
+    id: 2,
+    title: 'IPA Terpadu',
+    borrower: 'Siti Rahma',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-07',
+    due: '2025-07-14',
+    status: 'Besok',
+    genre: 'Pelajaran',
+    img: getRandomCover(),
+  },
+  {
+    id: 3,
+    title: 'Kisah Nusantara',
+    borrower: 'Budi Santoso',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-01',
+    due: '2025-07-10',
+    status: 'Lewat Tempo',
+    genre: 'Cerita',
+    img: getRandomCover(),
+  },
+  {
+    id: 4,
+    title: 'Komik Sains Seru',
+    borrower: 'Dian Putri',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-10',
+    due: '2025-07-15',
+    status: 'Dalam 2 Hari',
+    genre: 'Komik',
+    img: getRandomCover(),
+  },
+  {
+    id: 5,
+    title: 'Bahasa Indonesia',
+    borrower: 'Aris Nugroho',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-03',
+    due: '2025-07-14',
+    status: 'Besok',
+    genre: 'Pelajaran',
+    img: getRandomCover(),
+  },
+  {
+    id: 6,
+    title: 'Atlas Dunia',
+    borrower: 'Lilis Sari',
+    avatar: getRandomAvatar(),
+    borrowDate: '2025-07-08',
+    due: '2025-07-16',
+    status: 'Dalam 3 Hari',
+    genre: 'Ensiklopedia',
+    img: getRandomCover(),
+  },
 ];
 
 const JadwalPengembalianBukuPage: Component = () => {
@@ -127,20 +211,29 @@ const JadwalPengembalianBukuPage: Component = () => {
             <thead>
               <tr class="border-b-2 border-black">
                 <th class="text-left py-4 px-4 font-bold">Judul Buku</th>
-                <th class="text-left py-4 px-4 font-bold">Genre</th>
-                <th class="text-left py-4 px-4 font-bold">Tenggat</th>
+                <th class="text-left py-4 px-4 font-bold">Peminjam</th>
+                <th class="text-left py-4 px-4 font-bold">Tanggal Pinjam</th>
+                <th class="text-left py-4 px-4 font-bold">Tanggal Jatuh Tempo</th>
                 <th class="text-left py-4 px-4 font-bold">Status</th>
-                <th class="text-left py-4 px-4 font-bold">Detail Buku</th>
+                <th class="text-left py-4 px-4 font-bold">Detail</th>
               </tr>
             </thead>
             <tbody>
               {filteredBooks().map(b => (
                 <tr class="border-b border-gray-200">
                   <td class="py-4 px-4">{b.title}</td>
-                  <td class="py-4 px-4">{b.genre}</td>
+                  <td class="py-4 px-4">{b.borrower}</td>
+                  <td class="py-4 px-4">{b.borrowDate}</td>
                   <td class="py-4 px-4">{b.due}</td>
-                  <td class="py-4 px-4">{b.status}</td>
-                  <td class="py-4 px-4"><A href={`/riwayat/${b.id}`} class="underline text-[#388e5c]">Lihat detail</A></td>
+                  <td class="py-4 px-4">
+                    {b.status === 'Hari Ini' && <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo hari ini</span>}
+                    {b.status === 'Besok' && <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo besok</span>}
+                    {b.status === 'Lewat Tempo' && <span class="bg-red-200 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">Terlambat {Math.abs(Math.floor((new Date().getTime() - new Date(b.due).getTime()) / (1000*60*60*24)))} hari</span>}
+                    {b.status.startsWith('Dalam') && <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo {b.status.replace('Dalam ', 'dalam ')}</span>}
+                  </td>
+                  <td class="py-4 px-4">
+                    <A href={`/riwayat/${b.id}`} class="inline-block px-4 py-1 rounded bg-[#388e5c] text-white text-xs font-semibold hover:bg-[#219150] transition">Detail</A>
+                  </td>
                 </tr>
               ))}
             </tbody>
