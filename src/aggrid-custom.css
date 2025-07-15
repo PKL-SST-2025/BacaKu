@@ -1,0 +1,40 @@
+.ag-theme-alpine {
+  --ag-header-background-color: #6db37e;
+  --ag-header-foreground-color: #fff;
+  --ag-header-cell-hover-background-color: #219150;
+  --ag-row-hover-color: #e1eebc;
+  --ag-font-size: 15px;
+  --ag-odd-row-background-color: #f7fafc;
+  --ag-row-border-color: #e5e7eb;
+  --ag-border-radius: 0.75rem;
+  --ag-popup-shadow: 0 10px 24px 0 rgba(34, 197, 94, 0.12);
+}
+
+.ag-theme-alpine .ag-header {
+  border-radius: 0.75rem 0.75rem 0 0;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.ag-theme-alpine .ag-root-wrapper {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 24px 0 rgba(34, 197, 94, 0.09);
+}
+
+.ag-theme-alpine .ag-row {
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.ag-theme-alpine .ag-row-selected {
+  background: #e1eebc !important;
+}
+
+.ag-theme-alpine .ag-cell {
+  font-size: 15px;
+  color: #388e5c;
+}
+
+.ag-theme-alpine .ag-header-cell-label .ag-header-cell-text {
+  color: #fff;
+}

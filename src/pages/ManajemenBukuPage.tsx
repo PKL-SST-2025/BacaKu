@@ -83,7 +83,7 @@ const dummyBooks = [
     id: 6,
     title: 'Bahasa Indonesia',
     author: 'Aris',
-    status: 'Dikembalikan',
+    status: 'Tersedia',
     genre: 'Pelajaran',
     publisher: 'Erlangga',
     year: 2022,
@@ -131,7 +131,7 @@ const dummyBooks = [
     id: 10,
     title: 'Komik Detektif Sekolah',
     author: 'Fajar',
-    status: 'Dipesan',
+    status: 'Tersedia',
     genre: 'Komik',
     publisher: 'Mizan',
     year: 2020,
@@ -152,7 +152,8 @@ const ManajemenBukuPage = () => {
 
   // Genre dan status unik dari dummyBooks
   const genres = Array.from(new Set(dummyBooks.map(b => b.genre)));
-  const statuses = Array.from(new Set(dummyBooks.map(b => b.status)));
+  // Status hanya 'Tersedia', 'Rusak', 'Tidak Tersedia'
+  const statuses = ['Tersedia', 'Rusak', 'Tidak Tersedia'];
 
   // Filter utama buku
   const filteredBooks = () => dummyBooks.filter(b => {
@@ -163,9 +164,6 @@ const ManajemenBukuPage = () => {
     // Tombol filter atas
     if (activeFilter() === 'rusak') {
       return b.status === 'Rusak';
-    }
-    if (activeFilter() === 'dipinjam') {
-      return b.status === 'Dipinjam';
     }
     if (activeFilter() === 'tersedia') {
       return b.status === 'Tersedia';
@@ -273,27 +271,24 @@ const ManajemenBukuPage = () => {
         <hr class="border-gray-300 mb-6" />
         {/* Filter & Search */}
         <div class="flex flex-wrap gap-4 mb-6">
-          <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
-            onClick={() => setActiveFilter('semua')}
+           <button
+            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? (status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : 'bg-[#388e5c] text-white shadow') : 'bg-[#6db37e] text-[#E1EEBC]'} ${status() && status() !== '' ? 'opacity-70 cursor-not-allowed' : ''}`}
+            onClick={() => { setActiveFilter('semua'); setStatus(''); }}
+            disabled={!!status() && status() !== ''}
           >
             Semua Buku
           </button>
           <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'dipinjam' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
-            onClick={() => setActiveFilter('dipinjam')}
-          >
-            Dipinjam
-          </button>
-          <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'tersedia' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
-            onClick={() => setActiveFilter('tersedia')}
+            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'tersedia' ? (status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : 'bg-[#388e5c] text-white shadow') : 'bg-[#6db37e] text-[#E1EEBC]'} ${status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : ''}`}
+            onClick={() => { setActiveFilter('tersedia'); setStatus(''); }}
+            disabled={!!status() && status() !== ''}
           >
             Tersedia
           </button>
           <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'rusak' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
-            onClick={() => setActiveFilter('rusak')}
+            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'rusak' ? (status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : 'bg-[#388e5c] text-white shadow') : 'bg-[#6db37e] text-[#E1EEBC]'} ${status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : ''}`}
+            onClick={() => { setActiveFilter('rusak'); setStatus(''); }}
+            disabled={!!status() && status() !== ''}
           >
             Rusak
           </button>
@@ -317,9 +312,13 @@ const ManajemenBukuPage = () => {
             ))}
           </select>
           <select
-            class="px-3 py-2 rounded border border-gray-300 bg-white text-[#388e5c] focus:outline-none focus:ring-2 focus:ring-[#6db37e] max-w-xs w-full sm:w-auto"
+            class={`px-3 py-2 rounded border border-gray-300 bg-white text-[#388e5c] focus:outline-none focus:ring-2 focus:ring-[#6db37e] max-w-xs w-full sm:w-auto ${activeFilter() === 'tersedia' || activeFilter() === 'rusak' ? 'cursor-not-allowed bg-gray-100' : ''}`}
             value={status()}
-            onInput={e => setStatus(e.currentTarget.value)}
+            onInput={e => {
+              setStatus(e.currentTarget.value);
+              if (e.currentTarget.value) setActiveFilter('semua');
+            }}
+            disabled={activeFilter() === 'tersedia' || activeFilter() === 'rusak'}
           >
             <option value="">Semua Status</option>
             {statuses.map(s => (
@@ -351,7 +350,7 @@ const ManajemenBukuPage = () => {
                 <A href={`/kelola-buku/${b.id}`}
                   class="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#8fcb8c]/90 to-[#6db37e]/90 text-white font-semibold text-center shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:bg-[#388e5c] focus:outline-none focus:ring-2 focus:ring-[#6db37e]"
                 >
-                  Edit
+                  Edit 
                 </A>
               </div>
             ))

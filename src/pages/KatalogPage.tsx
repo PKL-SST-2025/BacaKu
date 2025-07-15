@@ -151,10 +151,11 @@ const KatalogPage: Component = () => {
         {/* Filter & Search */}
         <div class="flex flex-wrap gap-4 mb-6">
           <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
+            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? (status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : 'bg-[#388e5c] text-white shadow') : 'bg-[#6db37e] text-[#E1EEBC]'} ${status() && status() !== '' ? 'opacity-70 cursor-not-allowed' : ''}`}
             onClick={() => setActiveFilter('semua')}
+            disabled={!!status() && status() !== ''}
           >
-            Semua
+            Semua Buku
           </button>
           <button
             class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'rusak' ? 'bg-[#388e5c] text-white shadow' : (status() && status() !== '' ? 'bg-gray-300 text-gray-400 opacity-50 cursor-not-allowed' : 'bg-[#6db37e] text-[#E1EEBC]')}`}
@@ -171,7 +172,7 @@ const KatalogPage: Component = () => {
         <div class="flex items-center gap-4 mb-8">
           <input
             type="text"
-            placeholder="Search books"
+            placeholder="Cari buku atau penulis"
             class="px-4 py-2 border rounded-full border border-gray-300 flex-1 max-w-xs focus:outline-none focus:ring-2 focus:ring-[#6db37e]"
             value={search()}
             onInput={e => setSearch(e.currentTarget.value)}
@@ -181,7 +182,7 @@ const KatalogPage: Component = () => {
             value={genre()}
             onInput={e => setGenre(e.currentTarget.value)}
           >
-            <option value="">Genre</option>
+            <option value="">Semua Genre</option>
             {genres.map(g => (
               <option value={g}>{g}</option>
             ))}
@@ -192,7 +193,7 @@ const KatalogPage: Component = () => {
             onInput={e => setStatus(e.currentTarget.value)}
             disabled={activeFilter() === 'rusak'}
           >
-            <option value="">Status</option>
+            <option value="">Semua Status</option>
             {statuses.map(s => (
               <option value={s} disabled={activeFilter() === 'rusak' && s === 'Rusak'}>{s}</option>
             ))}

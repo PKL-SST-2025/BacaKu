@@ -6,7 +6,7 @@ import { BsBookmarksFill, BsPeople, BsBook, BsBookmarks } from 'solid-icons/bs';
 import { IoSettingsOutline } from 'solid-icons/io';
 import { RiDocumentFileHistoryLine } from 'solid-icons/ri';
 
-const ManajemenBukuDetailPage: Component = () => {
+const ManajemenBukuEditPage: Component = () => {
   const [showNotifModal, setShowNotifModal] = createSignal(false);
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = createSignal(false);
@@ -86,42 +86,31 @@ const ManajemenBukuDetailPage: Component = () => {
 
       {/* Drawer menu mobile */}
       {openMenu() && (
-        <div class="fixed inset-0 bg-black/80 z-40 flex md:hidden">
-          <div class="bg-white w-4/5 max-w-sm h-full p-6 flex flex-col gap-y-6 shadow-xl animate-slide-in">
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-xl font-bold text-[#388e5c]">Menu</h2>
-              <button 
-                onClick={() => setOpenMenu(false)}
-                class="text-gray-500 hover:text-[#388e5c]"
-              >
-                ✕
-              </button>
-            </div>
-            <A href="/home" class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition" onClick={() => setOpenMenu(false)}>
-              <AiOutlineHome size={22} /> Home
-            </A>
-            <A href="/katalog" class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition" onClick={() => setOpenMenu(false)}>
-              <AiOutlineBook size={22} /> Katalog
-            </A>
-            <A href="/riwayat" class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition" onClick={() => setOpenMenu(false)}>
-              <RiDocumentFileHistoryLine size={22} /> Riwayat
-            </A>
-            <A href="/settings" class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition" onClick={() => setOpenMenu(false)}>
-              <IoSettingsOutline size={22} /> Settings
-            </A>
-            <button 
-              class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition text-left w-full" 
-              onClick={() => { setOpenMenu(false); navigate('/kelola-buku'); }}
-            >
-              <BsBookmarksFill size={22} /> Kelola Buku
-            </button>
-            <A href="/kelola-anggota" class="flex items-center gap-3 p-2 text-[#388e5c] font-medium rounded-lg hover:bg-[#e1eebc] transition" onClick={() => setOpenMenu(false)}>
-              <BsPeople size={22} /> Kelola Anggota
-            </A>
-          </div>
-          <div class="flex-1" onClick={() => setOpenMenu(false)}></div>
-        </div>
-      )}
+  <div class="fixed inset-0 bg-black/80 z-40 flex md:hidden">
+    <div class="bg-white w-56 h-full p-6 flex flex-col gap-y-8 shadow-xl">
+      <A href="/home" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <AiOutlineHome size={22} /> Home
+      </A>
+      <A href="/katalog" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <AiOutlineBook size={22} /> Katalog
+      </A>
+      <A href="/riwayat" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <RiDocumentFileHistoryLine size={22} /> Riwayat
+      </A>
+      <A href="/settings" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <IoSettingsOutline size={22} /> Settings
+      </A>
+      <A href="/kelola-buku" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <BsBookmarksFill size={22} /> Kelola Buku
+      </A>
+      <A href="/kelola-anggota" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}>
+        <BsPeople size={22} /> Kelola Anggota
+      </A>
+      <button class="mt-8 text-sm text-gray-500 hover:text-[#388e5c]" onClick={() => setOpenMenu(false)}>Tutup</button>
+    </div>
+    <div class="flex-1" onClick={() => setOpenMenu(false)}></div>
+  </div>
+)}
 
       {/* Main Content */}
       <div class="flex-1 p-8 pt-20 md:pt-6 md:ml-20 w-full">
@@ -129,7 +118,7 @@ const ManajemenBukuDetailPage: Component = () => {
           <div class="flex items-center gap-2">
             <h1 class="text-3xl font-bold text-[#388e5c]">Manajemen Edit Buku</h1>
           </div>
-          <div class="flex items-center space-x-2 ml-6">
+          <div class="flex items-center space-x-2 ml-6 ">
             <div class="relative">
               <button onClick={() => setShowNotifModal(true)} class="relative p-2 rounded-full hover:bg-[#e1eebc]/50 transition">
                 {/* Bell Icon */}
@@ -303,4 +292,4 @@ const ManajemenBukuDetailPage: Component = () => {
   );
 };
 
-export default ManajemenBukuDetailPage;
+export default ManajemenBukuEditPage;

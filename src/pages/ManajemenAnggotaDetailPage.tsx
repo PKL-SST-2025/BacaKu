@@ -57,7 +57,7 @@ const ManajemenAnggotaDetailPage: Component = () => {
       <FiMenu size={28} class="text-white" />
     </button>
     <div class="flex-1 flex justify-center absolute left-0 right-0 pointer-events-none">
-      <img src="/LOGO_BacaKu.svg" alt="Logo BacaKu" class="h-8 object-contain filter invert" style="filter: brightness(0) invert(1);" />
+      <img src="/LOGO_BacaKu.svg" alt="Logo BacaKu" class="h-8 object-contain filter invert mx-auto" style="filter: brightness(0) invert(1);" />
     </div>
   </div>
 </div>
@@ -110,8 +110,8 @@ const ManajemenAnggotaDetailPage: Component = () => {
               )}
             </div>
             <A href="/profile" class="flex items-center space-x-4 hover:bg-[#e1eebc]/20 px-2 py-1 rounded-full transition">
-              <span class="font-medium text-[#388e5c]">User</span>
-              <img src="https://i.pravatar.cc/40" alt="User" class="rounded-full w-10 h-10" />
+              <span class="font-medium text-[#388e5c]">Admin</span>
+              <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10" />
             </A>
           </div>
         </div>

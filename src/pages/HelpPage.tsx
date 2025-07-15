@@ -73,7 +73,7 @@ const HelpPage: Component = () => {
       )}
 
       {/* Main Content */}
-      <div class="flex-1 p-8 pt-20 md:pt-8 md:ml-20 w-full">
+      <div class="flex-1 p-8 pt-20 md:pt-8 md:ml-20 bg-gradient-to-br from-[#f6fff9] to-[#e7f6ec]">
         {/* Header */}
         <div class="flex items-center justify-between mb-4">
           <h1 class="text-3xl font-bold text-[#388e5c]">Pusat Bantuan</h1>
@@ -217,7 +217,7 @@ const HelpPage: Component = () => {
         <hr class="my-6 border-gray-200" />
 
         <h2 class="text-xl font-semibold mb-4">Butuh Bantuan Lebih Lanjut?</h2>
-        <div class="bg-[#f8f9fa] rounded-lg p-6 border border-gray-100">
+        <div class="bg-[#e3f7ea] rounded-lg p-6 border border-[#c3e6d4] shadow-md">
           <p class="mb-4 text-gray-700">
             Jika Anda memiliki pertanyaan atau kendala lainnya, silakan hubungi tim dukungan kami:
           </p>

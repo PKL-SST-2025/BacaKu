@@ -211,7 +211,7 @@ const bookData = {
                 Kamu telah mengajukan pengembalian buku.<br/>
                 Silakan kembalikan buku ini dalam 3 hari ke depan, maksimal 3 hari setelah menekan tombol, jika tidak akan disanksi!
               </div>
-              <button class="px-8 py-2 rounded bg-[#8fcb8c] text-white font-semibold mt-2 hover:bg-[#388e5c] transition" onClick={() => setShowModal('')}>OK</button>
+              <button class="px-8 py-2 rounded bg-[#8fcb8c] text-white font-semibold mt-2 hover:bg-[#388e5c] transition" onClick={() => setShowModal(' ')}>OK</button>
             </div>
           </div>
         )}

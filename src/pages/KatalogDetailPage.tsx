@@ -108,7 +108,7 @@ const bookData = {
       )}
 
       {/* Main content */}
-      <div class="flex-1 md:ml-20 p-4 pt-20 md:pt-9 flex flex-col min-h-screen bg-white">
+      <div class="flex-1 md:ml-20 p-4 pt-20 md:pt-9 flex flex-col min-h-screen">
         {/* Header + Garis */}
         <div class="pl-4 md:pl-4">
           <div class="flex items-center justify-between mb-4">

@@ -112,7 +112,7 @@ const HomePage: Component = () => {
             <div class="relative w-full max-w-md">
               <input
                 type="text"
-                placeholder="Search books"
+                placeholder="Cari buku atau penulis"
                 class="w-full pl-5 pr-12 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6db37e] text-gray-700 shadow-sm"
               />
               <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#388e5c]">
@@ -156,7 +156,7 @@ const HomePage: Component = () => {
           </div>
         </div>
         {/* Garis pemisah */}
-        <hr class="border-[#e1eebc] mb-8" />
+        <hr class="border-gray-300 mb-8" />
         {/* Welcome text */}
         <div class="mb-8">
           <h1 class="text-2xl font-bold text-[#388e5c] mb-1">Welcome back, Admin</h1>
@@ -170,7 +170,7 @@ const HomePage: Component = () => {
     <div class="font-bold text-[#388e5c]">Pengembalian mendatang</div>
   </div>
             <div class="font-bold text-[#388e5c] mb-3">Waktu pengembalian bukumu!</div>
-            <div class="text-sm mt-2">Sel, 24 Juni<br/>Book: Esok Hari</div>
+            <div class="text-sm mt-2">Rab, 25 Juni<br/>Book: Matematika Kelas 7</div>
           </div>
           <div class="bg-white rounded-2xl shadow-lg p-6 col-span-1 cursor-pointer border border-[#e1eebc] hover:shadow-xl hover:-translate-y-1 transition-all duration-200 hover:bg-[#eafbe7] flex flex-col gap-2" onClick={() => navigate('/katalog')}>
   <div class="flex items-center gap-2 mb-3">
@@ -238,12 +238,12 @@ const HomePage: Component = () => {
               <div class="font-semibold text-[#388e5c] mb-7">2 Peminjaman aktif</div>
               <div class="flex items-center mb-5">
                 <img src="https://i.pravatar.cc/28" class="rounded-full mr-4" />
-                <span>Admin - Membawa "Esok Hari"</span>
+                <span>Admin - Membawa "Matematika Kelas 7"</span>
                 <span class="ml-auto text-gray-500 text-xs">Tenggat</span>
               </div>
               <div class="flex items-center mb-6">
                 <img src="https://i.pravatar.cc/28" class="rounded-full mr-4" />
-                <span>Admin - Mengembalikan buku</span>
+                <span>Admin - Mengembalikan "IPA Terpadu"</span>
                 <span class="ml-auto text-gray-500 text-xs">Besok</span>
               </div>
             </div>
@@ -253,10 +253,10 @@ const HomePage: Component = () => {
             <div class="bg-white rounded-xl shadow p-4">
               <div class="mb-4 flex items-center">
                 <span class="bg-[#e6e6e6] text-[#90C67C] rounded px-3 py-3 mr-2 font-bold text-xl">25</span>
-                <span>Buku Matematika - 25 Juni - 14:00</span>
+                <span>Buku Matematika Kelas 7 - 25 Juni - 14:00</span>
               </div>
               <div class="flex items-center">
-                <span class="bg-[#e6e6e6] text-[#90C67C] rounded px-3 py-3 mr-2 font-bold text-xl">26</span>
+                <span class="bg-[#e6e6e6] text-[#90C67C] rounded px-3 py-3 mr-2 font-bold text-xl">27</span>
                 <span>Jurnal Sains - 27 Juni - 10:30</span>
               </div>
               <button class="w-full bg-gradient-to-r from-[#8fcb8c]/90 to-[#6db37e]/90 hover:bg-[#5aa76a] text-white font-bold py-2 rounded-md mt-4" onClick={() => navigate('/jadwal-pengembalian-buku')}>Lihat semua</button>

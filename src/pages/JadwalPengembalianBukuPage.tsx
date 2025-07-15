@@ -1,4 +1,5 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, createEffect, onMount } from 'solid-js';
+import '../aggrid-custom.css';
 import { A, useLocation } from '@solidjs/router';
 import { FiMenu } from 'solid-icons/fi';
 import { AiOutlineHome, AiFillHome, AiOutlineBook, AiFillBook } from 'solid-icons/ai';
@@ -96,7 +97,83 @@ const dummyBooks = [
   },
 ];
 
+// Deklarasi agar TypeScript mengenali window.agGrid dan __agGridInstance pada gridRef
+declare global {
+  interface Window {
+    agGrid: any;
+  }
+  interface HTMLDivElement {
+    __agGridInstance?: any;
+  }
+}
+
 const JadwalPengembalianBukuPage: Component = () => {
+  let gridRef: HTMLDivElement | undefined;
+
+  // Definisi kolom ag-Grid
+  const columnDefs = [
+    { headerName: 'Judul Buku', field: 'title', flex: 1, minWidth: 160 },
+    { headerName: 'Peminjam', field: 'borrower', flex: 1, minWidth: 160 },
+    { headerName: 'Tanggal Pinjam', field: 'borrowDate', flex: 1, minWidth: 160 },
+    { headerName: 'Tanggal Jatuh Tempo', field: 'due', flex: 1, minWidth: 160 },
+    {
+      headerName: 'Status',
+      field: 'status',
+      flex: 1,
+      minWidth: 160,
+      cellRenderer: (params: any) => {
+        if (params.value === 'Hari Ini') return `<span class='bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold'>Jatuh tempo hari ini</span>`;
+        if (params.value === 'Besok') return `<span class='bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold'>Jatuh tempo besok</span>`;
+        if (params.value === 'Lewat Tempo') {
+          // Hitung hari keterlambatan
+          const dueDate = new Date(params.data.due);
+          const now = new Date();
+          const daysLate = Math.abs(Math.floor((now.getTime() - dueDate.getTime()) / (1000*60*60*24)));
+          return `<span class='bg-red-200 text-red-800 px-3 py-1 rounded-full text-xs font-semibold'>Terlambat ${daysLate} hari</span>`;
+        }
+        if (typeof params.value === 'string' && params.value.startsWith('Dalam')) {
+          return `<span class='bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold'>Jatuh tempo ${params.value.replace('Dalam ', 'dalam ')}</span>`;
+        }
+        return params.value;
+      }
+    },
+    {
+      headerName: 'Detail',
+      field: 'id',
+      flex: 1,
+      minWidth: 160,
+      cellRenderer: (params: any) => `<a href='/riwayat/${params.value}' class='inline-block px-4 py-1 rounded bg-[#388e5c] text-white text-xs font-semibold hover:bg-[#219150] transition'>Detail</a>`
+    }
+  ];
+
+  // Data hasil filter untuk ag-Grid
+  const getFilteredBooks = () => filteredBooks();
+
+  let gridInstance: any = null;
+
+  // Inisialisasi ag-Grid saat mount
+  onMount(() => {
+    if (gridRef && window.agGrid && window.agGrid.Grid) {
+      const gridOptions = {
+        columnDefs,
+        rowData: getFilteredBooks(),
+        defaultColDef: { resizable: true, sortable: true },
+        domLayout: 'autoHeight',
+        suppressRowClickSelection: true,
+        headerHeight: 40,
+        rowHeight: 38,
+      };
+      gridInstance = new window.agGrid.Grid(gridRef, gridOptions);
+      gridRef.__agGridInstance = gridInstance;
+    }
+  }); // tambahkan kurung kurawal penutup di sini
+
+  // Update grid data saja jika filter/search berubah
+  createEffect(() => {
+    if (gridRef && gridRef.__agGridInstance && gridRef.__agGridInstance.api) {
+      gridRef.__agGridInstance.api.setRowData(getFilteredBooks());
+    }
+  });
   const [showNotifModal, setShowNotifModal] = createSignal(false);
   const location = useLocation();
   const activePath = location.pathname;
@@ -122,7 +199,7 @@ const JadwalPengembalianBukuPage: Component = () => {
   });
 
   return (
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen overflow-x-hidden">
       {/* Sidebar kiri */}
       <div class="hidden md:flex fixed top-0 left-0 bg-[#6db37e] min-h-screen h-full w-20 flex-col items-center py-8 z-20">
         <div class="flex flex-col items-center gap-y-10 mt-14">
@@ -133,11 +210,24 @@ const JadwalPengembalianBukuPage: Component = () => {
           <A href="/kelola-buku" class="mb-4"><BsBookmarks size={28} class="text-white" /></A>
           <A href="/kelola-anggota" class="mb-4"><BsPeople size={28} class="text-white" /></A>
         </div>
+        <div class="mb-4 mt-auto">
+          <img src="/LOGO.svg" alt="Logo" class="w-10 h-10 object-contain mx-auto filter invert" style="filter: brightness(0) invert(1);" />
+        </div>
       </div>
-      {/* Navbar atas (mobile) */}
-      <div class="flex md:hidden w-full bg-[#6db37e] h-14 items-center px-4 fixed top-0 left-0 z-30">
-        <button onClick={() => setOpenMenu(true)}><FiMenu size={28} class="text-white" /></button>
-      </div>
+       {/* Navbar atas (mobile) */}
+       <div class="flex md:hidden w-full bg-[#6db37e] h-14 items-center fixed top-0 left-0 z-30">
+         <div class="flex items-center w-full relative">
+           <button onClick={() => setOpenMenu(true)} class="z-10 flex-shrink-0 pl-4">
+             <FiMenu size={28} class="text-white" />
+           </button>
+           <div class="flex justify-center absolute left-0 right-0 pointer-events-none">
+             <img src="/LOGO_BacaKu.svg" alt="Logo BacaKu" class="h-8 object-contain filter invert mx-auto" style="filter: brightness(0) invert(1);" />
+           </div>
+           <div class="flex-shrink-0 mr-2" style="margin-left:auto;">
+             {/* Profil user jika ingin tetap di kanan, bisa tambahkan di sini */}
+           </div>
+         </div>
+       </div>
       {/* Drawer menu mobile */}
       {openMenu() && (
         <div class="fixed inset-0 bg-black/80 z-30 flex">
@@ -154,11 +244,11 @@ const JadwalPengembalianBukuPage: Component = () => {
         </div>
       )}
       {/* Main Content */}
-      <div class="flex-1 p-8 pt-20 md:pt-8 md:ml-20">
+      <div class="flex-1 p-8 pt-20 md:pt-8 md:ml-20 max-w-full overflow-x-hidden">
         {/* Header */}
         <div class="flex items-center justify-between mb-4">
           <h1 class="text-3xl font-bold text-[#388e5c]">Jadwal Pengembalian Buku</h1>
-          <div class="flex items-center space-x-2 ml-6">
+          <div class="flex items-center space-x-2 ml-6 pr-8">
             <div class="relative">
               <button onClick={() => setShowNotifModal(true)} class="relative p-2 rounded-full hover:bg-[#e1eebc]/50 transition">
                 {/* Bell Icon */}
@@ -205,39 +295,18 @@ const JadwalPengembalianBukuPage: Component = () => {
             <option value="Minggu Depan">Minggu Depan</option>
           </select>
         </div>
-        {/* Table */}
-        <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 mt-4 overflow-x-auto">
-          <table class="min-w-full text-sm">
-            <thead>
-              <tr class="border-b-2 border-black">
-                <th class="text-left py-4 px-4 font-bold">Judul Buku</th>
-                <th class="text-left py-4 px-4 font-bold">Peminjam</th>
-                <th class="text-left py-4 px-4 font-bold">Tanggal Pinjam</th>
-                <th class="text-left py-4 px-4 font-bold">Tanggal Jatuh Tempo</th>
-                <th class="text-left py-4 px-4 font-bold">Status</th>
-                <th class="text-left py-4 px-4 font-bold">Detail</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredBooks().map(b => (
-                <tr class="border-b border-gray-200">
-                  <td class="py-4 px-4">{b.title}</td>
-                  <td class="py-4 px-4">{b.borrower}</td>
-                  <td class="py-4 px-4">{b.borrowDate}</td>
-                  <td class="py-4 px-4">{b.due}</td>
-                  <td class="py-4 px-4">
-                    {b.status === 'Hari Ini' && <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo hari ini</span>}
-                    {b.status === 'Besok' && <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo besok</span>}
-                    {b.status === 'Lewat Tempo' && <span class="bg-red-200 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">Terlambat {Math.abs(Math.floor((new Date().getTime() - new Date(b.due).getTime()) / (1000*60*60*24)))} hari</span>}
-                    {b.status.startsWith('Dalam') && <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">Jatuh tempo {b.status.replace('Dalam ', 'dalam ')}</span>}
-                  </td>
-                  <td class="py-4 px-4">
-                    <A href={`/riwayat/${b.id}`} class="inline-block px-4 py-1 rounded bg-[#388e5c] text-white text-xs font-semibold hover:bg-[#219150] transition">Detail</A>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Table diganti ag-Grid */}
+        <div class="overflow-x-auto w-full">
+          <div
+            ref={gridRef}
+            class="ag-theme-alpine min-w-[600px]"
+            style="width:100%;min-height:350px;height:auto;"
+          ></div>
+          <div class="md:hidden flex items-center justify-center gap-2 mt-2 text-xs text-gray-500 select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5m0 0l-5-5m5 5H6" /></svg>
+            Geser untuk melihat kolom lain
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5m0 0l-5-5m5 5H6" /></svg>
+          </div>
         </div>
       </div>
     </div>

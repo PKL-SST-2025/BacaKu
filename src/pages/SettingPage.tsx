@@ -96,7 +96,7 @@ const SettingPage: Component = () => {
              </div>
              <A href="/profile" class="flex items-center space-x-4 hover:bg-[#e1eebc]/20 px-2 py-1 rounded-full transition">
                <span class="font-medium text-[#388e5c]">Admin</span>
-               <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10" />
+               <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10"/>
              </A>
            </div>
           </div>

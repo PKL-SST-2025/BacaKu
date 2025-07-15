@@ -80,7 +80,7 @@ const ManajemenAnggotaEditPage: Component = () => {
       )}
 
       {/* Main Content */}
-      <div class="flex-1 p-8 pt-20 md:pt-9 md:ml-20">
+      <div class="flex-1 p-8 pt-20 md:pt-8 md:ml-20">
         {/* Header */}
         <div class="flex items-center justify-between mb-4">
           <h1 class="text-3xl font-bold text-[#388e5c]">Edit Anggota</h1>
@@ -111,8 +111,10 @@ const ManajemenAnggotaEditPage: Component = () => {
                 </div>
               )}
             </div>
-            <span class="font-medium text-[#388e5c]">User</span>
-            <img src="https://i.pravatar.cc/40" alt="User" class="rounded-full w-10 h-10" />
+            <A href="/profile" class="flex items-center space-x-4 hover:bg-[#e1eebc]/20 px-2 py-1 rounded-full transition">
+              <span class="font-medium text-[#388e5c]">Admin</span>
+              <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10" />
+            </A>
           </div>
         </div>
         <hr class="border-gray-300 mb-6" />

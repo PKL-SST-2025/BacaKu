@@ -5,12 +5,72 @@ import { AiOutlineHome, AiOutlineBook } from 'solid-icons/ai';
 import { BsBookmarks, BsPeople } from 'solid-icons/bs';
 import { IoSettingsOutline } from 'solid-icons/io';
 import { HiOutlineQuestionMarkCircle } from 'solid-icons/hi';
+import * as am5 from "@amcharts/amcharts5";
+import * as am5xy from "@amcharts/amcharts5/xy";
+import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 // @ts-ignore
 import ApexCharts from 'solid-apexcharts';
 import { RiDocumentFileHistoryLine } from 'solid-icons/ri';
 import { useNavigate } from '@solidjs/router';
 
+import { onMount, onCleanup } from "solid-js";
+
 const ProfilePage: Component = () => {
+  onMount(() => {
+    let root = am5.Root.new("amchart-bar");
+    root.setThemes([am5themes_Animated.new(root)]);
+    let chart = root.container.children.push(
+      am5xy.XYChart.new(root, {
+        panX: false,
+        panY: false,
+        wheelX: "none",
+        wheelY: "none"
+      })
+    );
+    let data = [
+      { month: "January", value: 4 },
+      { month: "February", value: 2 },
+      { month: "March", value: 1 },
+      { month: "April", value: 1 },
+      { month: "May", value: 3 },
+      { month: "June", value: 5 },
+      { month: "July", value: 4 }
+    ];
+    let xAxis = chart.xAxes.push(
+      am5xy.CategoryAxis.new(root, {
+        categoryField: "month",
+        renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 30 })
+      })
+    );
+    xAxis.data.setAll(data);
+    let yAxis = chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        renderer: am5xy.AxisRendererY.new(root, {})
+      })
+    );
+    let series = chart.series.push(
+      am5xy.ColumnSeries.new(root, {
+        name: "Buku yang dipinjam",
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: "value",
+        categoryXField: "month",
+        fill: am5.color(0x6db37e),
+        stroke: am5.color(0x388e5c)
+      })
+    );
+    series.columns.template.setAll({
+      cornerRadiusTL: 8,
+      cornerRadiusTR: 8,
+      fillOpacity: 1
+    });
+    series.data.setAll(data);
+    series.appear(1000);
+    chart.appear(1000, 100);
+    onCleanup(() => {
+      root.dispose();
+    });
+  });
   const [showNotifModal, setShowNotifModal] = createSignal(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,21 +79,21 @@ const ProfilePage: Component = () => {
 
   // Dummy data
   const user = {
-    name: 'User XIRPL',
+    name: 'Admin ',
     avatar: 'https://i.pravatar.cc/40',
   };
   const stats = {
-    dipinjam: 3,
-    hariAktif: 4,
+    dipinjam: 5,
+    hariAktif: 6,
     selesai: 5,
   };
   const achievements = [
-    { name: 'Achievement 1', progress: 0, total: 10 },
-    { name: 'Achievement 2', progress: 0, total: 10 },
+    { name: 'Meminjam 5 buku', progress: 5, total: 5 },
+    { name: 'Meminjam 10 buku', progress: 5, total: 10 },
   ];
   const books = [
-    { title: 'Buku 1', author: 'Penulis A' },
-    { title: 'Buku 2', author: 'Penulis B' },
+    { title: 'Matematika Kelas 7', author: 'Rina' },
+    { title: 'IPA Terpadu', author: 'Dedi' },
   ];
 
   return (
@@ -208,57 +268,7 @@ const ProfilePage: Component = () => {
             <div>
               <span class="text-xl font-bold text">Riwayat peminjaman per bulan</span>
               <div class="mt-2 bg-gradient-to-br from-[#f6fff9]/90 to-[#8fcb8c]/90 rounded-2xl border border-[#e1eebc] shadow-lg backdrop-blur-md p-7 flex flex-col items-center justify-center min-h-[260px] w-full">
-                {/* SVG Bar Chart modern ala Chart.js */}
-                {(() => {
-                  const barData = [4, 2, 1, 1, 3, 5, 4];
-                  const barLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-                  const colors = Array(barData.length).fill('#fff');
-                  const strokeColors = Array(barData.length).fill('#388e5c');
-                  const maxVal = Math.max(...barData);
-                  const chartHeight = 180;
-                  const chartWidth = 520;
-                  const yTicks = 5;
-                  const barWidth = 28;
-                  const gap = (chartWidth - barData.length * barWidth) / (barData.length + 1);
-                  // Legend
-                  return (
-                    <>
-                      <div class="flex justify-center items-center mb-2">
-                        <div class="flex items-center">
-                          <div class="mr-2 rounded" style={{width:'24px',height:'10px',background:'#fff',border:'2px solid #388e5c'}}></div>
-                          <span class="text-[#388e5c] text-sm font-semibold">Buku yang dipinjam</span>
-                        </div>
-                      </div>
-                      <svg width={chartWidth} height={chartHeight+40}>
-                        {/* Grid Y */}
-                        {[...Array(yTicks+1)].map((_,i) => {
-                          const y = 20 + (chartHeight-20) * i / yTicks;
-                          return <line x1={40} y1={y} x2={chartWidth-10} y2={y} stroke="#eee" stroke-width="1" />
-                        })}
-                        {/* Y axis labels */}
-                        {[...Array(yTicks+1)].map((_,i) => {
-                          const val = Math.round((maxVal * (yTicks-i))/yTicks);
-                          const y = 20 + (chartHeight-20) * i / yTicks + 4;
-                          return <text x={30} y={y} font-size="12" fill="#E1EEBC" text-anchor="end">{val}</text>
-                        })}
-                        {/* Bars */}
-                        {barData.map((val,i) => {
-                          const x = 40 + gap + i*(barWidth+gap);
-                          const h = (val/maxVal)*(chartHeight-20);
-                          return (
-                            <g>
-                              <rect x={x} y={chartHeight-h} width={barWidth} height={h} fill={colors[i]} stroke={strokeColors[i]} stroke-width="2" rx="5" />
-                              {/* Value di atas bar */}
-                              <text x={x+barWidth/2} y={chartHeight-h-8} font-size="12" fill="#388e5c" font-weight="bold" text-anchor="middle">{val}</text>
-                              {/* Label bawah */}
-                              <text x={x+barWidth/2} y={chartHeight+18} font-size="13" fill="#388e5c" text-anchor="middle">{barLabels[i]}</text>
-                            </g>
-                          );
-                        })}
-                      </svg>
-                    </>
-                  );
-                })()}
+                <div id="amchart-bar" style={{ width: "100%", height: "260px", 'max-width': "520px" }}></div>
               </div>
             </div>
           </div>

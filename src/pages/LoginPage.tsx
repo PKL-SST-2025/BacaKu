@@ -48,7 +48,7 @@ const LoginPage: Component = () => {
 
   return (
     <>
-      <div class="min-h-screen flex items-center justify-center bg-[#dadada] p-4">
+      <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f6fff9] to-[#e7f6ec] p-4">
         <div class="w-full max-w-4xl h-[90vh] flex bg-white rounded-2xl overflow-hidden">
           {/* Kiri: Gradasi hijau */}
           <div class="hidden md:block w-1/2 h-full bg-gradient-to-br from-[#6db37e] to-[#c2e3c0] rounded-l-2xl" />

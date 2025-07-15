@@ -297,8 +297,8 @@ const RiwayatPage: Component = () => {
               )}
             </div>
             <A href="/profile" class="flex items-center space-x-4">
-              <span class="font-medium text-[#388e5c]">User</span>
-              <img src="https://i.pravatar.cc/40" alt="User" class="rounded-full w-10 h-10" />
+              <span class="font-medium text-[#388e5c]">Admin</span>
+              <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10" />
             </A>
           </div>
         </div>
@@ -306,10 +306,11 @@ const RiwayatPage: Component = () => {
         {/* Filter & Search */}
         <div class="flex flex-wrap gap-4 mb-6">
           <button
-            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? 'bg-[#388e5c] text-white shadow' : 'bg-[#6db37e] text-[#E1EEBC]'}`}
+            class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'semua' ? (status() && status() !== '' ? 'bg-gray-300 text-gray-400 cursor-not-allowed' : 'bg-[#388e5c] text-white shadow') : 'bg-[#6db37e] text-[#E1EEBC]'} ${status() && status() !== '' ? 'opacity-70 cursor-not-allowed' : ''}`}
             onClick={() => setActiveFilter('semua')}
+            disabled={!!status() && status() !== ''}
           >
-            Semua
+            Semua Buku
           </button>
           <button
             class={`px-8 py-2 rounded-full font-semibold transition ${activeFilter() === 'rusak' ? 'bg-[#388e5c] text-white shadow' : (!!status() ? 'bg-gray-300 text-gray-400 opacity-50 cursor-not-allowed' : 'bg-[#6db37e] text-[#E1EEBC]')}`}
@@ -329,12 +330,13 @@ const RiwayatPage: Component = () => {
           >
             Dikembalikan
           </button>
+          <A href="/jadwal-pengembalian-buku" class={`px-8 py-2 rounded-full font-semibold transition bg-[#6db37e] text-[#E1EEBC] hover:bg-[#388e5c] hover:text-white`}>Jadwal Pengembalian</A>
         </div>
         <div class="flex items-center gap-4 mb-8">
           <input
             type="text"
-            placeholder="Search books"
-            class="px-4 py-2 border rounded-lg border border-gray-300 flex-1 max-w-xs focus:outline-none focus:ring-2 focus:ring-[#6db37e]"
+            placeholder="Cari buku atau penulis"
+            class="px-4 py-2 border rounded-full border border-gray-300 flex-1 max-w-xs focus:outline-none focus:ring-2 focus:ring-[#6db37e]"
             value={search()}
             onInput={e => setSearch(e.currentTarget.value)}
           />
@@ -343,7 +345,7 @@ const RiwayatPage: Component = () => {
             value={genre()}
             onInput={e => setGenre(e.currentTarget.value)}
           >
-            <option value="">Genre (Semua)</option>
+            <option value="">Semua Genre</option>
             {genres.map(g => (
               <option value={g}>{g}</option>
             ))}
@@ -354,7 +356,7 @@ const RiwayatPage: Component = () => {
             onInput={e => setStatus(e.currentTarget.value)}
             disabled={['rusak','dikembalikan'].includes(activeFilter())}
           >
-            <option value="">Status (Semua)</option>
+            <option value="">Semua Status</option>
             {statuses.map(s => (
               <option value={s} disabled={['rusak','dikembalikan'].includes(activeFilter()) && s === activeFilter().charAt(0).toUpperCase() + activeFilter().slice(1)}>{s}</option>
             ))}

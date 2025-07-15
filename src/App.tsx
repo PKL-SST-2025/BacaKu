@@ -12,11 +12,12 @@ import RiwayatDetailPage from './pages/RiwayatDetailPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingPage from './pages/SettingPage';
 import ManajemenBukuPage from './pages/ManajemenBukuPage';
-import ManajemenBukuDetailPage from './pages/ManajemenBukuDetailPage';
+import ManajemenBukuEditPage from './pages/ManajemenBukuEditPage';
 import ManajemenAnggotaPage from './pages/ManajemenAnggotaPage';
 import ManajemenAnggotaDetailPage from './pages/ManajemenAnggotaDetailPage';
 import ManajemenAnggotaEditPage from './pages/ManajemenAnggotaEditPage';
 import JadwalPengembalianBukuPage from './pages/JadwalPengembalianBukuPage';
+
 import HelpPage from './pages/HelpPage';
 
 const App: Component = () => {
@@ -34,7 +35,7 @@ const App: Component = () => {
       <Route path="/profile" component={ProfilePage} />
       <Route path="/settings" component={SettingPage} />
       <Route path="/kelola-buku" component={ManajemenBukuPage} />
-      <Route path="/kelola-buku/:id" component={ManajemenBukuDetailPage} />
+      <Route path="/kelola-buku/:id" component={ManajemenBukuEditPage} />
       <Route path="/kelola-anggota" component={ManajemenAnggotaPage} />
       <Route path="/kelola-anggota/detail" component={ManajemenAnggotaDetailPage} />
       <Route path="/kelola-anggota/edit" component={ManajemenAnggotaEditPage} />
