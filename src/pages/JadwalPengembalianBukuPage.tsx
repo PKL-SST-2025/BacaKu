@@ -216,14 +216,12 @@ const JadwalPengembalianBukuPage: Component = () => {
       </div>
        {/* Navbar atas (mobile) */}
        <div class="flex md:hidden w-full bg-[#6db37e] h-14 items-center fixed top-0 left-0 z-30">
-         <div class="flex items-center w-full relative">
+         <div class="flex items-center w-full justify-between">
            <button onClick={() => setOpenMenu(true)} class="z-10 flex-shrink-0 pl-4">
              <FiMenu size={28} class="text-white" />
            </button>
-           <div class="flex justify-center absolute left-0 right-0 pointer-events-none">
-             <img src="/LOGO_BacaKu.svg" alt="Logo BacaKu" class="h-8 object-contain filter invert mx-auto" style="filter: brightness(0) invert(1);" />
-           </div>
-           <div class="flex-shrink-0 mr-2" style="margin-left:auto;">
+           <img src="/LOGO_BacaKu.svg" alt="Logo BacaKu" class="h-8 object-contain filter invert mx-auto" style="filter: brightness(0) invert(1);" />
+           <div class="flex-shrink-0 mr-11">
              {/* Profil user jika ingin tetap di kanan, bisa tambahkan di sini */}
            </div>
          </div>
@@ -276,8 +274,8 @@ const JadwalPengembalianBukuPage: Component = () => {
               )}
             </div>
             <A href="/profile" class="flex items-center space-x-4 hover:bg-[#e1eebc]/20 px-2 py-1 rounded-full transition">
-              <span class="font-medium text-[#388e5c]">User</span>
-              <img src="https://i.pravatar.cc/40" alt="User" class="rounded-full w-10 h-10" />
+              <span class="font-medium text-[#388e5c]">Admin</span>
+              <img src="https://i.pravatar.cc/40" alt="Admin" class="rounded-full w-10 h-10" />
             </A>
           </div>
         </div>
@@ -296,18 +294,11 @@ const JadwalPengembalianBukuPage: Component = () => {
           </select>
         </div>
         {/* Table diganti ag-Grid */}
-        <div class="overflow-x-auto w-full">
-          <div
-            ref={gridRef}
-            class="ag-theme-alpine min-w-[600px]"
-            style="width:100%;min-height:350px;height:auto;"
-          ></div>
-          <div class="md:hidden flex items-center justify-center gap-2 mt-2 text-xs text-gray-500 select-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5m0 0l-5-5m5 5H6" /></svg>
-            Geser untuk melihat kolom lain
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5m0 0l-5-5m5 5H6" /></svg>
-          </div>
-        </div>
+        <div
+          ref={gridRef}
+          class="ag-theme-alpine"
+          style="width:100%;min-height:350px;height:auto;"
+        ></div>
       </div>
     </div>
   );

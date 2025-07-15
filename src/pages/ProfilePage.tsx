@@ -28,13 +28,13 @@ const ProfilePage: Component = () => {
       })
     );
     let data = [
-      { month: "January", value: 4 },
-      { month: "February", value: 2 },
-      { month: "March", value: 1 },
-      { month: "April", value: 1 },
+      { month: "Jan", value: 4 },
+      { month: "Feb", value: 2 },
+      { month: "Mar", value: 1 },
+      { month: "Apr", value: 1 },
       { month: "May", value: 3 },
-      { month: "June", value: 5 },
-      { month: "July", value: 4 }
+      { month: "Jun", value: 5 },
+      { month: "Jul", value: 4 }
     ];
     let xAxis = chart.xAxes.push(
       am5xy.CategoryAxis.new(root, {
