@@ -257,7 +257,6 @@ const RiwayatPage: Component = () => {
             <A href="/settings" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}><IoSettingsOutline size={22} /> Settings</A>
             <A href="/kelola-buku" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}><BsBookmarks size={22} /> Kelola Buku</A>
             <A href="/kelola-anggota" class="flex items-center gap-3 text-[#388e5c] font-semibold" onClick={() => setOpenMenu(false)}><BsPeople size={22} /> Kelola Anggota</A>
-            <button class="mt-8 text-sm text-gray-500 hover:text-[#27ae60]" onClick={() => setOpenMenu(false)}>Tutup</button>
             <button class="mt-8 text-sm text-gray-500 hover:text-[#388e5c]" onClick={() => setOpenMenu(false)}>Tutup</button>
           </div>
           <div class="flex-1" onClick={() => setOpenMenu(false)}></div>
